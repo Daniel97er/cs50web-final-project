@@ -1,0 +1,28 @@
+{% extends "crm_system/layout.html" %}
+
+{% block body %}
+    <h1 id="current-user-id">Hello {{ request.user }}</h1>
+    <div id="dashboard-info-div">
+        {% if today_tasks_count == 1 %}
+            <p class="dashboard-paragraph">Today to do <strong>{{ today_tasks_count }}</strong> task.</p>
+        {% else %}
+            <p class="dashboard-paragraph">Today to do <strong>{{ today_tasks_count }}</strong> tasks.</p>
+        {% endif %}
+        {% if open_tasks_count == 1 %}
+            <p class="dashboard-paragraph">Overall there are <strong>{{ open_tasks_count }}</strong> open task.</p>
+        {% else %}
+            <p class="dashboard-paragraph">Overall there are <strong>{{ open_tasks_count }}</strong> open tasks.</p>
+        {% endif %}
+        {% if completed_tasks_count == 1 %}
+            <p class="dashboard-paragraph">Overall there are <strong>{{ completed_tasks_count }}</strong> completed task.</p>
+        {% else %}
+            <p class="dashboard-paragraph">Overall there are <strong>{{ completed_tasks_count }}</strong> completed tasks.</p>
+        {% endif %}
+        {% if customers_count == 1 %}
+            <p class="dashboard-paragraph">Total number of <strong>{{ customers_count }}</strong> customer.</p>
+        {% else %}
+            <p class="dashboard-paragraph">Total number of <strong>{{ customers_count }}</strong> customers.</p>
+        {% endif %}
+        <p id="dashboard-motivation">Good luck at work 👍</p>
+    </div>
+{% endblock %}

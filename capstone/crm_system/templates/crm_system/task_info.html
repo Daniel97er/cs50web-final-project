@@ -1,0 +1,30 @@
+{% extends "crm_system/layout.html" %}
+
+{% block body %}
+
+    <h1 id="task-info-header" class="c-t-header">ID: {{ current_task.task_id }}. {{ current_task.task_name }} info page</h1>
+
+    <div class="c-t-info-div">
+        <p class="c-info-text" id="task-info-id-t">
+            <label class="c-info-label" for="t-info-id">ID:</label>{{ current_task.task_id }}
+        </p>
+        <p class="c-info-text" id="task-info-name-t">
+            <label class="c-info-label" for="t-info-task-name">Task name:</label>{{ current_task.task_name }}
+        </p>
+        <p class="c-info-text" id="task-info-customer-last-name-t">
+            <label class="c-info-label" for="t-info-last-name">Last name:</label>ID:{{ current_customer.customer_id }}. {{ current_customer.last_name }}
+        </p>
+        <p class="c-info-text">
+            <label class="c-info-label" for="t-info-date">Finish date:</label>{{ current_task.task_date }}
+        </p>
+        <p class="c-info-text" id="task-info-price-t">
+            <label class="c-info-label" for="t-info-price">Task price:</label>{{ current_task.task_price }}€
+        </p>
+        <form class="form" action="{% url 'task_done' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="task_done_id" name="task_done_id" value={{ current_task.pk }}>
+            <button type="submit" class="create-c-t-submit">Task done ✅</button>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "crm_system/layout.html" %}
+
+{% block body %}
+
+    <h1 class="c-t-header">Customers page</h1>
+
+    {% if message %}
+        <div class="error-message">{{ message }}</div>
+    {% endif %}
+
+    <div class="c-t-div">
+        <div class="c-t-list-div">
+            <h2 class="second-header">Customer list</h2>
+            <form>
+                <input class="c-t-search-field" class="input-field" type="search" placeholder="Search for first name or last name" name="q">
+                <button class="c-t-search-btn" type="submit">Search</button>
+            </form>
+            <table class="c-t-table">
+                <tr class="c-t-tr">
+                <th class="c-t-th">ID</th>
+                <th class="c-t-th">First Name</th>
+                <th class="c-t-th">Last Name</th>
+                <th class="c-t-th">Email address</th>
+                </tr>
+                {% for entry in page_obj %}
+                    <tr class="c-t-tr">
+                    <td class="c-t-td" id="customer-table-id{{ entry.customer_id }}"><a href="{% url 'customers_info' entry.id %}">{{ entry.customer_id }}</a></td>
+                    <td class="c-t-td" id="customer-table-first-name{{ entry.customer_id }}"><a href="{% url 'customers_info' entry.id %}">{{ entry.first_name }}</a></td>
+                    <td class="c-t-td" id="customer-table-last-name{{ entry.customer_id }}"><a href="{% url 'customers_info' entry.id %}">{{ entry.last_name }}</a></td>
+                    <td class="c-t-td" id="customer-table-email-address{{ entry.customer_id }}"><a href="{% url 'customers_info' entry.id %}">{{ entry.email_address }}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p>(Click on a customer for more details)</p>
+            <!-- div with class pagination from django pagination documentary-->
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a class="paginator-link" href="?page=1">&laquo; First</a>
+                        <a class="paginator-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        <strong>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</strong>
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a class="paginator-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        <a class="paginator-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            <br>
+        </div>
+
+        <div class="c-t-create-div">
+            <h2 class="second-header">Create a new customer</h2>
+            <form class="form" action="{% url 'customers_view' %}" method="post">
+                {% csrf_token %}
+                <label class="label-design">First name</label>
+                <div class="input-marg">
+                    <input class="input-field" autocomplete="off" autofocus id="customer-firstname" name="customer-firstname" placeholder="Customer first name..." type="text">
+                </div>
+                <label class="label-design">Last name</label>
+                <div class="input-marg">
+                    <input class="input-field" autocomplete="off" id="customer-lastname" name="customer-lastname" placeholder="Customer last name..." type="text">
+                </div>
+                <label class="label-design">Email address</label>
+                <div class="input-marg">
+                    <input class="input-field" autocomplete="off" id="customer-email" name="customer-email" placeholder="Customer email address..." type="email">
+                </div>
+                <button type="submit" class="create-c-t-submit" id="customer-create-btn">Create customer</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

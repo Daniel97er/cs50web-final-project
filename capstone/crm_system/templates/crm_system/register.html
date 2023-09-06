@@ -1,0 +1,37 @@
+{% extends "crm_system/layout.html" %}
+
+{% block body %}
+
+    <h2 class="form-header">Register</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form class="form" action="{% url 'register_view' %}" method="post">
+
+        {% csrf_token %}
+
+        <label class="label-design">Username</label>
+        <div class="input-marg">
+            <input class="input-field" autocomplete="off" autofocus id="register-username" name="register-username" placeholder="Enter your Username..." type="text">
+        </div>
+        <label class="label-design">Email</label>
+        <div class="input-marg">
+            <input class="input-field" autocomplete="off" id="register-email" name="register-email" placeholder="Enter your Email..." type="text">
+        </div>
+        <label class="label-design">Password</label>
+        <div class="input-marg">
+            <input class="input-field" autocomplete="off" id="register-password" name="register-password" placeholder="Enter your Password..." type="password">
+        </div>
+        <label class="label-design">Password confirmation</label>
+        <div class="input-marg">
+            <input class="input-field" autocomplete="off" id="register-password-confirmation" name="register-password-confirmation" placeholder="Confirm your Password..." type="password">
+        </div>
+        <button class="register-login-btn" id="register-submit-btn" type="submit">Register</button>
+
+    </form>
+
+    <p class="info-paragraph">Already have an account? <a class="info-paragraph-link" href="{% url 'login_view' %}">Login here</a></p>
+
+{% endblock %}

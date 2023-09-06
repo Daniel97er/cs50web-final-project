@@ -1,0 +1,84 @@
+{% extends "crm_system/layout.html" %}
+
+{% block body %}
+
+    <h1 class="c-t-header">Tasks page</h1>
+
+    {% if message %}
+        <div class="error-message">{{ message }}</div>
+    {% endif %}
+
+    <div class="c-t-div">
+        <div class="c-t-list-div">
+            <h2 class="second-header">Task list</h2>
+            <table class="c-t-table">
+                <tr class="c-t-tr">
+                <th class="c-t-th">ID</th>
+                <th class="c-t-th">Task Name</th>
+                <th class="c-t-th">Customer</th>
+                <th class="c-t-th">Finish date</th>
+                <th class="c-t-th">Price</th>
+                </tr>
+                {% for entry in page_obj %}
+                    <tr class="c-t-tr">
+                    <td class="c-t-td" id="task-table-id{{ entry.task_id }}"><a href="{% url 'task_info' entry.id %}">{{ entry.task_id }}</a></td>
+                    <td class="c-t-td" ><a id="task-table-name{{ entry.task_id }}" href="{% url 'task_info' entry.id %}">{{ entry.task_name }}</a></td>
+                    <td class="c-t-td" id="task-table-customer{{ entry.task_id }}"><a href="{% url 'task_info' entry.id %}">ID:{{ entry.task_customer_id.customer_id }}. {{ entry.task_customer_id.last_name }}</a></td>
+                    <td class="c-t-td" id="task-table-date{{ entry.task_id }}"><a href="{% url 'task_info' entry.id %}">{{ entry.task_date }}</a></td>
+                    <td class="c-t-td" id="task-table-price{{ entry.task_id }}"><a href="{% url 'task_info' entry.id %}">{{ entry.task_price }}€</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p>(Click on a task for more details)</p>
+            <!-- div with class pagination from django pagination documentary-->
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a class="paginator-link" href="?page=1">&laquo; First</a>
+                        <a class="paginator-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        <strong>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</strong>
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a class="paginator-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        <a class="paginator-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            <br>
+            <a href="{% url 'tasks_archive' %}"><button id="archive-btn" type="submit" class="create-c-t-submit">Task archive</button></a>
+        </div>
+
+        <div class="c-t-create-div">
+            <h2 class="second-header">Create a new Task</h2>
+            <form class="form" action="{% url 'tasks_view' %}" method="post">
+                {% csrf_token %}
+                <label class="label-design">Task name</label>
+                <div class="input-marg">
+                    <input class="input-field" autocomplete="off" autofocus id="task-name" name="task-name" placeholder="Task name..." type="text">
+                </div>
+                <label class="label-design">Task customer ID</label>
+                <div class="input-marg">
+                    <select class="input-field" id="select-task-customer" name='select-task-customer'>
+                        {% for customer_entry in customer_list %}
+                            <option value='{{customer_entry.customer_id}}'>ID:{{ customer_entry.customer_id}}. {{ customer_entry.first_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <label class="label-design">Task finish date</label>
+                <div class="input-marg">
+                    <input class="input-field" autocomplete="off" id="task-date" name="task-date" placeholder="Task finish date..." type="date">
+                </div>
+                <label class="label-design">Task price</label>
+                <div class="input-marg">
+                    <input class="input-field" autocomplete="off" autofocus id="task-price" name="task-price" placeholder="Task price..." type="number" min="0.00" max="1000000.00" step="0.01">
+                </div>
+                <button type="submit" id="create-task-button" class="create-c-t-submit">Create task</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

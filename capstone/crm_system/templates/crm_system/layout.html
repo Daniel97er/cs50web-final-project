@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lange="en">
+
+    <head>
+        <title>CRM-System</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static 'crm_system/styles.css' %}" />
+    </head>
+
+    <body>
+        {% if user.is_authenticated %}
+            <nav class="navbar">
+                <div class="home-logo">
+                    <a id="crm-logo-link" href="{% url 'index' %}"><img src="{% static 'crm_system/dashboard.png' %}" alt="Dashboard Symbol" width="70px" height="30px"></a>
+                </div>
+                <ul class="nav-links">
+                    <input type="checkbox" id="checkbox_toggle" />
+                    <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+                    <div class="menu">
+                        <li class="li-nav"><a id="tasks-link" href="{% url 'tasks_view' %}">Tasks</a></li>
+                        <li class="li-nav"><a id="customers-link" href="{% url 'customers_view' %}">Customers</a></li>
+                        <li class="li-nav"><a id="logout-logo-link" href="{% url 'logout_view' %}"><img src="{% static 'crm_system/logout.png' %}" alt="Logout Symbol" width="40px" height="30px"></a></li>
+                    </div>
+                </ul>
+            </nav>
+        {% else %}
+            <nav class="navbar">
+                <div class="home-logo">
+                    <a href="{% url 'logout_view' %}"><img src="{% static 'crm_system/dashboard.png' %}" alt="Dashboard Symbol" width="70px" height="30px"></a>
+                </div>
+                <ul class="nav-links">
+                    <div class="menu">
+                        <li class="li-nav"><a id="register-nav-link" href="{% url 'register_view' %}">Register</a></li>
+                        <li class="li-nav"><a href="{% url 'login_view' %}">Login</a></li>
+                    </div>
+                </ul>
+            </nav>
+        {% endif %}
+
+        {% block body %}
+        {% endblock %}
+
+    </body>
+
+</html>

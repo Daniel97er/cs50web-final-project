@@ -1,0 +1,77 @@
+{% extends "crm_system/layout.html" %}
+
+{% block body %}
+
+    <script>
+        // Copied getCookie function from Django csrftoken documentation
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Edit info box and sent to backend
+        function edited_info_box(customer_id) {
+
+            // Get content of the post
+            const edited_content = document.getElementById("info-box-content").value;
+
+            // Cookie for csrf-token
+            const csrftoken = getCookie('csrftoken');
+
+            console.log(edited_content);
+
+            // Send edited info box content to the backend
+            fetch("/edit_customer_info_box", {
+                method: "POST",
+                headers: {'content-type': 'application/json', 'X-CSRFToken': csrftoken},
+                body: JSON.stringify({
+                    edited_content: edited_content,
+                    customer_id: customer_id
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                // Edited post for user to see
+                console.log("Hello");
+                document.querySelector("#info-box-content").innerHTML = `${edited_content}`;
+            });
+
+        }
+    </script>
+
+    <h1 class="c-t-header">ID: {{ current_customer.customer_id }}. {{ current_customer.last_name }} info page</h1>
+
+    <div class="c-t-info-div">
+        <p class="c-info-text">
+            <label class="c-info-label" for="c-info-id">ID:</label>{{ current_customer.customer_id }}
+        </p>
+        <p class="c-info-text">
+            <label class="c-info-label" for="c-info-last-name">Last name:</label>{{ current_customer.last_name }}
+        </p>
+        <p class="c-info-text">
+            <label class="c-info-label" for="c-info-first-name">First name:</label>{{ current_customer.first_name }}
+        </p>
+        <p class="c-info-text">
+            <label class="c-info-label" for="c-info-email-address">Email address:</label>{{ current_customer.email_address }}
+        </p>
+        <fieldset id="c-info-box">
+            <h2>Customer Infos:</h2>
+            <textarea id="info-box-content">{{ current_customer.info_box }}</textarea>
+            <br>
+            <button class="create-c-t-submit" id="info-box-btn" type="submit" onclick=edited_info_box({{ current_customer.id }})>Edited info box!</button>
+        </fieldset>
+    </div>
+
+
+{% endblock %}

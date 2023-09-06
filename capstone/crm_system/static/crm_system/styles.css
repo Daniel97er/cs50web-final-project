@@ -1,0 +1,320 @@
+body {
+    margin: 0;
+    background-color: rgba(0, 120, 120, 0.8);
+    font-family: Arial, sans-serif;
+    letter-spacing: 1.3px;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(250, 120, 0, 0.7);
+    padding: 0.5% 2%;
+}
+
+.nav-links a {
+    font-family: Arial, sans-serif;
+    color: lightblue;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: green;
+}
+
+.menu {
+    display: flex;
+    gap: 0.3em;
+    font-size: 160%;
+}
+
+.menu li {
+    padding: 3px 14px;
+  }
+
+input[type=checkbox] {
+    display: none;
+  }
+
+/* Hamburger Menu for Navbar*/
+.hamburger {
+    display: none;
+    font-size: 100%;
+    user-select: none;
+  }
+
+/* Media Queries for Hamburger */
+@media (max-width: 670px) {
+.menu {
+    display: none;
+    position: absolute;
+    background-color: rgba(250, 120, 0, 0.7);
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 16px 0;
+}
+
+.menu li + li {
+    margin-top: 12px;
+}
+
+input[type=checkbox]:checked ~ .menu {
+    display: block;
+}
+
+.hamburger {
+    display: block;
+    background-color: lightblue;
+}
+   }
+
+/* Register and Log in */
+.form-header {
+    width: 100%;
+    margin: 5% auto -2% auto;
+    text-align: center;
+    font-size: 200%;
+}
+
+.form {
+    text-align: center;
+    margin: 7%;
+}
+
+.label-design {
+    color: black;
+    font-weight: bold;
+    font-size: 130%;
+    margin-top: 2.5%;
+}
+
+.register-login-btn {
+    width: 160px;
+    height: 50px;
+    margin: 2%;
+    border: hidden;
+    border-radius: 2vw;
+    background-color: lightblue;
+    font-size: 25px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(173, 216, 250, 3);
+}
+
+.register-login-btn:hover {
+    color: orange;
+}
+
+.input-marg {
+    margin-bottom: 3%;
+    padding: 1%;
+}
+
+.info-paragraph {
+    margin-left: 2%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.info-paragraph-link {
+    color: lightblue;
+}
+
+.info-paragraph-link:hover {
+    color: orange;
+}
+
+.input-field {
+    width: 250px;
+    height: 30px;
+    box-shadow:0 0 15px 4px rgba(173, 216, 250, 0.35);
+    border: solid;
+    border-radius:15px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 6px solid lightblue;
+}
+
+.error-message {
+    width: 35%;
+    margin-top: -80px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    background-color: red;
+}
+
+/* Index page */
+#current-user-id {
+    text-align: center;
+    margin: 10px;
+}
+
+.dashboard-paragraph {
+    margin: 30px;
+}
+
+#dashboard-info-div {
+    font-size: 25px;
+    text-align: center;
+    padding: 30px;
+}
+
+#dashboard-motivation {
+    margin: 40px;
+    margin-top: 80px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+/* Customer and task page */
+.c-t-header {
+    width: 100%;
+    text-align: center;
+    color: cyan;
+}
+
+.c-t-div {
+    width: 100%;
+    display: flex;
+}
+
+@media (max-width: 800px) {
+    /* For mobile phones: */
+    .c-t-div {
+        width: 100%;
+        display: block;
+    }
+  }
+
+.second-header {
+    font-size: 30px;
+    color: rgba(250, 120, 0, 0.8)
+}
+
+@media (min-width: 801px) {
+    /* For not mobile phones: */
+    .c-t-list-div {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        border-right-style: solid;
+        border-color: rgba(250, 120, 0, 0.5);
+        padding: 0 40px 10px 40px;
+    }
+}
+
+@media (max-width: 800px) {
+    /* For mobile phones: */
+    .c-t-list-div {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        border-bottom-style: solid;
+        border-color: rgba(250, 120, 0, 0.5)
+    }
+}
+
+.c-t-create-div {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.create-c-t-submit {
+    width: 230px;
+    height: 45px;
+    border: hidden;
+    border-radius: 30px;
+    margin-top: 15px;
+    background-color: lightgreen;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.create-c-t-submit:hover {
+    border: 6px solid lightblue;
+}
+
+.c-t-search-field {
+    margin-bottom: 30px;
+    height: 40px;
+}
+
+.c-t-search-btn {
+    width: 140px;
+    height: 40px;
+    border: hidden;
+    border-radius: 30px;
+    background-color: lightblue;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.c-t-search-btn:hover {
+    border: 4px solid lightgreen;
+}
+
+#archive-btn {
+    background-color: lightblue;
+}
+
+/* Customers and task page table */
+.c-t-table {
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.c-t-th, .c-t-td {
+    text-align: left;
+    padding: 20px 5px 20px 5px;
+}
+
+.c-t-td > a {
+    text-decoration: none;
+    color: black;
+}
+
+.c-t-tr:nth-child(even) {
+    background-color: #D6EEEE;
+  }
+
+  /* Paginator design */
+.paginator-link {
+    color: rgb(260, 120, 0);
+    margin: 5px;
+}
+
+/* Customer and task info page */
+.c-t-info-div {
+    margin: 5% 30%;
+}
+
+.c-info-label {
+    font-size: 25px;
+    width: 250px;
+    display: inline-block;
+}
+
+.c-info-text {
+    font-size: 25px;
+}
+
+#c-info-box {
+    border-color: orange;
+}
+
+#info-box-content {
+    width: 500px;
+    height: 200px;
+}
+

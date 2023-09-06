@@ -1,0 +1,30 @@
+{% extends "crm_system/layout.html" %}
+
+{% block body %}
+
+    <h2 class="form-header">Login</h2>
+
+
+    {% if message %}
+        <div class="error-message">{{ message }}</div>
+    {% endif %}
+
+    <form class="form" action="{% url 'login_view' %}" method="post">
+
+        {% csrf_token %}
+
+        <label class="label-design">Username</label>
+        <div class="input-marg">
+            <input class="input-field" autocomplete="off" autofocus id="login-username" name="login-username" placeholder="Enter your Username..." type="text">
+        </div>
+        <label class="label-design">Password</label>
+        <div class="input-marg">
+            <input class="input-field" autocomplete="off" id="login-password" name="login-password" placeholder="Enter your Password..." type="password">
+        </div>
+        <button class="register-login-btn" type="submit" id="login-submit">Login</button>
+
+    </form>
+
+    <p class="info-paragraph">Don't have an account? <a id="info-register-link" class="info-paragraph-link" href="{% url 'register_view' %}">Register here</a></p>
+
+{% endblock %}
