@@ -1,6 +1,6 @@
 # CRM-System
 
-!!! Before yoo use the programm check the code and the functionality
+!!! Before you use the programm check the code and the functionality
     of the programm because there can be errors. !!!
 
 ## Short Description:
