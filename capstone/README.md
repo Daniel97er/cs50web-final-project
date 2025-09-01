@@ -1,7 +1,7 @@
 # CRM-System
 
-!!! Before you use the programm check the code and the functionality
-    of the programm because there can be errors. !!!
+!!! Before you use the program check the code and the functionality
+    of the program because there can be errors. !!!
 
 ## Short Description:
 
@@ -46,7 +46,7 @@ alphanumeric characters. Password must be longer than 8 alphanumeric
 characters. Email format must be right because its tested with
 Regular Expression. After the successful registration you will be
 logged in and lead to the Dashboard page. If you are already have
-a Account you can click on Login to get the login page.
+a Account you can click on Login to get the Login page.
 
 ![Alt-Text](pictures_documentation/ScreenshotCRMRegister.png)
 
@@ -59,7 +59,7 @@ Login Page
 The Dashboard page contain some important infos. At the top of the
 page is the navigation bar. There is a self designed CRM logo which
 bring you back to the Dashboard page from all other pages. In the the
-top right corner there is a self designed Log out logo.
+top right corner there is a self designed log out logo.
 
 ![Alt-Text](pictures_documentation/ScreenshotCRMDashboard.png)
 
@@ -102,7 +102,7 @@ information that can be printed.
 ![Alt-Text](pictures_documentation/ScreenshotCRMTaskInfo.png)
 
 
-The completed tasks are deleted frommthe task list and archived in
+The completed tasks are deleted from the task list and archived in
 the task archive page. With a click on the task there are more infos
 about the completed task.
 
@@ -165,6 +165,7 @@ about the completed task.
     This is make with the reportlab library.
 26. Implement a test to test if the task info and the task archive
     work right.
+
 
 
 
